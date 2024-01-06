@@ -51,7 +51,7 @@ return ss.peek();
 } 
   
 public static void main(String[] args) {
-    System.out.println("12 + 3 * = " + evaluatePostfix("6 7 + 3 * 8 9 - 8 *"));
+    System.out.println("12 + 3 * = " + evaluatePostfix("12 + 3 *"));
 }
 
    
