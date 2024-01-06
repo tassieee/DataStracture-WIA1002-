@@ -1,0 +1,58 @@
+
+public class PostfixEvaluation {
+    
+   public static int evaluatePostfix(String exp){
+MyStack ss= new MyStack();
+String[] newarr =exp.split(" ");
+String operand;
+int n;
+
+for (int i = 0; i < newarr.length; i++) 
+
+        {
+            if(!newarr[i].equals("+") && !newarr[i].equals("-") && !newarr[i].equals("*") && !newarr[i].equals("/"))
+            {
+       operand= newarr[i];
+       n=Integer.parseInt(operand);
+       ss.push(n);
+      
+            }
+            else if( newarr[i].equals("+")){
+                int a= ss.pop();
+                int b=ss.pop();
+                
+                int sum=a+b;
+                ss.push(sum);
+            }
+            else if(newarr[i].equals("-")){
+                int a=ss.pop();
+                int b=ss.pop();
+                
+                int bi=b-a;
+                ss.push(bi);
+            }
+            else if(newarr[i].equals("*")){
+                int a=ss.pop();
+                int b=ss.pop();
+                
+                int gun=a*b;
+                ss.push(gun);
+            }
+             else if(newarr[i].equals("/")){
+                int a=ss.pop();
+                int b=ss.pop();
+                
+                int vag=b/a;
+                ss.push(vag);
+            }
+
+        }  
+return ss.peek(); 
+} 
+  
+public static void main(String[] args) {
+    System.out.println("12 + 3 * = " + evaluatePostfix("6 7 + 3 * 8 9 - 8 *"));
+}
+
+   
+   }
