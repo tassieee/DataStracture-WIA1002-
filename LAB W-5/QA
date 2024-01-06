@@ -1,1 +1,76 @@
 
+
+import java.util.EmptyStackException;
+import java.util.Scanner;
+
+public class MyStack {
+
+    Scanner sc = new Scanner(System.in);
+    int n = 100;
+    int[] array = new int[n];
+    int size = 0;
+
+    public MyStack() {
+    }
+
+    public void isEmpty() {
+        if (size > 0) {
+            System.out.println("Stack is not empty.");
+        } else {
+            System.out.println("Stack underflow.");
+        }
+
+    }
+
+  public int peek() {
+    if (size > 0) { 
+       return array[size - 1];
+    } else {
+       throw new EmptyStackException(); // or handle it in a way that fits your application
+    }
+}
+
+public int pop() {
+    if (size > 0) {
+        size--;
+        return array[size];
+    } else {
+        throw new EmptyStackException(); // or handle it in a way that fits your application
+    }
+}
+
+
+    public void push(int data) {
+        if (size < n) {
+            array[size++] = data;
+
+        } else {
+            System.out.println("Stack OverFlow");
+        }
+    }
+    
+    public void pushMany(String data){
+        if(size<n){
+       String [] array =data.split(",");
+       for( String arrays : array){
+           push(Integer.parseInt(arrays.trim()));
+       }
+        }
+        else{
+            System.out.println("Stack Overflow");
+        }
+    }
+   
+    @Override
+    public String toString() {
+        if(size>0){
+            System.out.print("Stack = ");
+for(int i=0;i<size;i++){
+    System.out.print(array[i]);
+    System.out.print( " ");
+}}
+  return "Stack is empty";   
+    }
+    
+
+}
