@@ -26,7 +26,7 @@ public class MyStack {
     if (size > 0) { 
        return array[size - 1];
     } else {
-       throw new EmptyStackException(); // or handle it in a way that fits your application
+       throw new EmptyStackException(); 
     }
 }
 
@@ -35,7 +35,7 @@ public int pop() {
         size--;
         return array[size];
     } else {
-        throw new EmptyStackException(); // or handle it in a way that fits your application
+        throw new EmptyStackException(); 
     }
 }
 
