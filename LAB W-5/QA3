@@ -9,7 +9,7 @@ public class Check_HTML {
     public boolean Chtml() throws FileNotFoundException {
         Stack st = new Stack();
 
-        String path = "Sample.txt";
+        String path = "Sample.txt";                                     // Chamge the path based on your file location and the file;
         try {
             Scanner sc = new Scanner(new FileInputStream(path));
             String line = sc.nextLine();
