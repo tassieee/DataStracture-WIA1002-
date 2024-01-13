@@ -1,0 +1,69 @@
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Check_HTML {
+
+    public boolean Chtml() throws FileNotFoundException {
+        Stack st = new Stack();
+
+        String path = "D:\\SEMESTER 3\\DATA STRUCTURE\\Lab\\Lab 5 Question (for 08.11.2023)-20231102\\sample.txt";
+        try {
+            Scanner sc = new Scanner(new FileInputStream(path));
+            String line = sc.nextLine();
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                char[] tokens = line.toCharArray();                      // it will convert the line into char.
+                for (int i = 0; i < tokens.length; i++) {                //read the char until end of the file.   
+                    if (tokens[i] == '<' && tokens[i + 1] != '/') {      //if the token is an opening symbol,
+                        String store = "";                               // push it into the stack
+                        i++;                                             // i will be increase one by one, so basically it'll read each character .
+                        while (tokens[i] != '>') {                       // it will continue and  store the value untill it found the closing tag
+                            store += tokens[i++];
+
+                        }
+                        System.out.println("Pushing into Stack :" + store);
+                        st.push(store);
+                        System.out.println("Current Stack : " + st.toString());
+                    }
+                    if (tokens[i] == '<' && tokens[i + 1] == '/') {                   //during scan if i finds closing tag
+                        String end = "";                                              // it'll store the value of that end tag.
+                        i = i + 2;                                                    // its not gonna cound '/', as i+1=/; so i+2=next char of /.
+                        while (tokens[i] != '>') // store the end tag until the >.
+                        {
+                            end += tokens[i++];
+                        }
+                        System.out.println("Found an ending tag : " + end);
+                        String store = (String) st.pop();                                         // pop the end tag from the stcak;
+                        System.out.println("Current Stack " + st.toString());
+                    
+                        if (!store.equals(end)) {
+                            System.out.println("Error: " + store + ", " + end);
+                            return false;
+                        } 
+                        else {
+                            System.out.println(" ");
+                             
+                        }
+                    }
+
+                }
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        
+        return true;
+
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Check_HTML c = new Check_HTML();
+        System.out.println("Is the html file correct?" + c.Chtml());
+
+    }
+
+}
