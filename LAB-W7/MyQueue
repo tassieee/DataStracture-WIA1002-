@@ -1,0 +1,61 @@
+public class MyQueue<T> {
+    int m; // max size;
+    int head;
+    int size;
+    T arr[];
+
+    public MyQueue(int maxSize) {
+        this.m = maxSize;
+        this.size = 0;
+        arr = (T[]) new Object[m];
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public T peek() {
+        if (head > 0) {
+            System.out.println("Peek: " + arr[head]);
+        }
+        return null;
+    }
+
+    public T enqueue(T data) {
+        if (size < m) {
+            arr[size++] = data;
+            System.out.println("Enqueue: " + data);
+        }
+        return null;
+    }
+
+    public T dequeue() {
+        if (!isEmpty()) {
+            System.out.println("Dequeue: " + arr[head++]);
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+       
+      for(int  i=0;i<size;i++){
+          System.out.print(arr[i]);
+          if(i<size-1){
+          System.out.print("-->");
+      }}
+        
+        return "";
+        
+    }
+
+    public static void main(String[] args) {
+        MyQueue<Integer> Q = new MyQueue<>(10);
+        Q.enqueue(40);
+        Q.enqueue(500);
+        Q.enqueue(9785);
+        Q.enqueue(4550);
+        Q.dequeue();
+        System.out.println(Q.toString());
+    }
+}
