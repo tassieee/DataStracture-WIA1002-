@@ -1,4 +1,7 @@
-
+/**
+ *
+ * @author HUMYRA
+ */
 public class GenericQueue<T> {
 
     int head;
