@@ -1,1 +1,84 @@
+/**
+ *
+ * @author HUMYRA
+ */
+public class GenericStack <T>{
+int capacity;
+int top=-1;
+T [] stack;
+    public GenericStack(int capacity) {
+        this.capacity=capacity;
+        stack=(T[]) new Object[capacity];
+    }
+    public boolean isFull(){
+        return top+1>=capacity;
+    }
+    public void push(T data){
+        if(isFull()){
+            throw new RuntimeException();
+        }
+        stack[++top]=data;
+        System.out.println("Push : "+data);
+    }
+    public boolean isEmpty(){
+        return top==-1;
+    }
+public T pop(){
+    if(isEmpty()){
+        throw new RuntimeException();
+    }
+   return (T) stack[top--];     
+}
+public T peek(){
+    if(isEmpty()){
+        throw new RuntimeException();
+    }
+    return (T) stack[top];
+}
+public void pushMany(String data){
+    String values[]=data.split(",");
+    System.out.println("");
+    for(String v: values){
+        push((T) v.trim());
+    }
+}
+public void popMiddle() {
+    if (isEmpty()) {
+        throw new RuntimeException("Stack is empty");
+    }
 
+    int middle = top / 2;
+
+    if (top % 2 == 0) {
+        for (int i = middle; i < top; i++) {
+            stack[i] = stack[i+1];
+        }
+        top--;  
+    }
+}
+
+public void popAll(){
+    if(isEmpty()){
+        throw new RuntimeException();
+    }
+     else{
+      System.out.println("There are " + (top) + " items in the stack. Pop all...");
+     while(!isEmpty()) {
+        System.out.println("Removing "+pop()+"..");
+}
+     }
+}
+public void display(){
+    if(!isEmpty()){
+      System.out.println("There are " + (top + 1) + " items in the stack. Displaying...");
+  
+ for(int i=top;i>=0;i--){
+     System.out.println(stack[i]);
+ }
+       System.out.println();
+}
+    else{
+         System.out.println("Stack is empty. nothing to display...");
+    }
+}
+}
