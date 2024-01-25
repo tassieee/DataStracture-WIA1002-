@@ -3,47 +3,138 @@
  *
  * @author HUMYRA
  */
-public class LL {
-    Node head;
+class LL 
+ {
+
+    private Node head;
 
     public LL() {
-        this.head=null;
-    }
-    public boolean isEmpty(){
-        return head==null;
-    }
-    
-    public void add(String data,int totalsold){
-        Node n=new Node(data,totalsold);
-        if(isEmpty()){
-            head=n;
-        }
-        else{
-            Node nn=head;
-            while(nn.next!=null){
-                nn=nn.next;
-            }
-            nn.next=n;
-        }
-    }
-    
-    
-}
-class Node{
-    String data;
-    int ts;
-    Node next;
-public Node() {
-    this.data="";
-    this.next=null;
-    this.ts=0;
-    }
-    public Node(String data, int ts) {
-        this.data = data;
-        this.ts = ts;
-        this.next = null;
+        this.head = null;
     }
 
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public void add(String v, int ch) {
+        Node n = new Node(v, ch);
+        if (!isEmpty()) {
+            Node nn = head;
+            while (nn.next != null) {
+                nn = nn.next;
+            }
+            nn.next = n;
+        } else {
+            head = n;
+        }
+    }
+
+    public void addAfter(String esixt, String nw, int ch) {
+        Node n = new Node(nw, ch);
+        if(!isEmpty()){
+        Node nn = head;
+        while (nn.next != null) {
+            if (nn.next.sub.equals(esixt)) {
+                n.next = nn.next;
+                nn.next = n;
+                System.out.println("Addig " + nw + " after " + esixt);
+          return;
+            }
+            nn = nn.next;
+            
+        }
+    }
+        else{
+            System.out.println(" LinkedList is full");
+        }
+    }
+    public void deleteHead(){
+        if(!isEmpty()){
+            head=head.next;
+        }
+    }
+    public void remove(String v,int ch){
+        if(!isEmpty()){
+            if(head.sub.equals(v)){
+                head=head.next;
+                System.out.println("Removing..."+v);
+                System.out.println("");
+                
+            }
+            else{
+                Node n=head;
+                while(n.next!=null){
+                    if(n.next.sub.equals(v)){
+                        n.next=n.next.next;
+                        System.out.println("Removing.... ");  
+                        System.out.println(v);
+                   return;
+                    }
+                    n=n.next;
+                }
+                System.out.println(v+" is not found  ");
+                
+            }
+            
+        }
+        else{
+            throw new RuntimeException("Linkedlist is empty");
+       
+        }
+    }
     
+    public int ch(){
+        int total=0;
+        Node n=head;
+        while(n!=null){
+            total+=n.ch;
+            n=n.next;
+    } 
+          
+        return total;
+        
+    }
+    public void dr(Node n){
+        if(n==null){
+            return;
+        }
+        dr(n.next);
+        System.out.println(n.sub+", "+n.ch+" Hours");
+         }
     
+    public void display(){
+        if(!isEmpty()){
+            System.out.println("");
+            System.out.println("Displaying the Linked List-------------");
+            dr(head);
+            System.out.println(" ");
+             
+          System.out.println("Total Credit hours "+ch());
+            System.out.println(""); 
+        }
+        
+    }
+    
+
+}
+
+class Node {
+
+    String sub;
+    Node next;
+    int ch;
+
+    public Node() {
+        this.sub = " ";
+        this.ch = 0;
+        next = null;
+    }
+
+    public Node(String sub, int ch) {
+        this.ch = ch;
+        this.sub = sub;
+        this.next = null;
+
+    }
+
 }
