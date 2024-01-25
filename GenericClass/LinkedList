@@ -1,0 +1,49 @@
+
+/**
+ *
+ * @author HUMYRA
+ */
+public class LL {
+    Node head;
+
+    public LL() {
+        this.head=null;
+    }
+    public boolean isEmpty(){
+        return head==null;
+    }
+    
+    public void add(String data,int totalsold){
+        Node n=new Node(data,totalsold);
+        if(isEmpty()){
+            head=n;
+        }
+        else{
+            Node nn=head;
+            while(nn.next!=null){
+                nn=nn.next;
+            }
+            nn.next=n;
+        }
+    }
+    
+    
+}
+class Node{
+    String data;
+    int ts;
+    Node next;
+public Node() {
+    this.data="";
+    this.next=null;
+    this.ts=0;
+    }
+    public Node(String data, int ts) {
+        this.data = data;
+        this.ts = ts;
+        this.next = null;
+    }
+
+    
+    
+}
